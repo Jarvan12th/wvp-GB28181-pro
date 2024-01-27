@@ -58,7 +58,12 @@
         <asciidoctor.pdf.output.directory>${project.build.directory}/asciidoc/pdf</asciidoctor.pdf.output.directory>
 
         <!-- sonar -->
+        <sonar.projectKey>Jarvan12th_wvp-GB28181-pro</sonar.projectKey>
+        <sonar.organization>jarvanlee</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.projectName>wvp-GB28181-pro</sonar.projectName>
+        <sonar.projectVersion>1.0</sonar.projectVersion>
+        <sonar.sources>.</sonar.sources>
     </properties>
 
     <profiles>

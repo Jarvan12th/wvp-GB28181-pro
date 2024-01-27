@@ -67,6 +67,17 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>application-docker.yml</include>
+                        </includes>
+                        <targetPath>${project.build.outputDirectory}</targetPath>
+                    </resource>
+                </resources>
+            </build>
             <properties>
                 <project.packaging>jar</project.packaging>
             </properties>

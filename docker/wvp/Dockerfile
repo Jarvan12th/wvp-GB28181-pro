@@ -1,7 +1,6 @@
 FROM ubuntu:20.04   as   build
 
 ARG gitUrl="https://gitee.com/pan648540858"
-ARG zlmGitUrl="https://gitee.com/xia-chu/ZLMediaKit"
 
 RUN export DEBIAN_FRONTEND=noninteractive &&\
         apt-get update && \
@@ -31,17 +30,6 @@ RUN cd /home/wvp-pro-assist && \
         cp /home/wvp-pro-assist/target/*.jar /opt/assist/ && \
         cp /home/wvp-pro-assist/src/main/resources/application-dev.yml /opt/assist/config/application.yml
 
-RUN cd /home && \
-        git clone --depth=1 "${zlmGitUrl}"
-RUN cd /home/ZLMediaKit && \
-        git submodule update --init --recursive && \
-        mkdir -p build release/linux/Release/ &&\
-        cd build && \
-        cmake -DCMAKE_BUILD_TYPE=Release .. && \
-        make -j4 && \
-        rm -rf ../release/linux/Release/config.ini && \
-        cp -r ../release/linux/Release/* /opt/media
-
 RUN cd /opt/wvp && \
         echo '#!/bin/bash' > run.sh && \
         echo 'echo ${WVP_IP}' >> run.sh && \
@@ -64,8 +52,8 @@ EXPOSE 80/tcp
 EXPOSE 1935/tcp
 EXPOSE 554/tcp
 EXPOSE 554/udp
-EXPOSE 30000-30500/tcp
-EXPOSE 30000-30500/udp
+EXPOSE 30000-30300/tcp
+EXPOSE 30000-30300/udp
 
 ENV LC_ALL zh_CN.UTF-8
 

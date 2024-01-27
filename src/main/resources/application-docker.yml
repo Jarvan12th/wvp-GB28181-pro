@@ -7,7 +7,7 @@ spring:
     # REDIS数据库配置
     redis:
         # [必须修改] Redis服务器IP, REDIS安装在本机的,使用127.0.0.1
-        host: ${REDIS_HOST:127.0.0.1}
+        host: ${REDIS_HOST:redis}
         # [必须修改] 端口号
         port: ${REDIS_PORT:6379}
         # [可选] 数据库 DB
@@ -24,7 +24,7 @@ spring:
                 master:
                     type: com.zaxxer.hikari.HikariDataSource
                     driver-class-name: com.mysql.cj.jdbc.Driver
-                    url: jdbc:mysql://127.0.0.1:3306/wvp2?useUnicode=true&characterEncoding=UTF8&rewriteBatchedStatements=true&serverTimezone=PRC&useSSL=false&allowMultiQueries=true
+                    url: jdbc:mysql://mysql:3306/wvp2?useUnicode=true&characterEncoding=UTF8&rewriteBatchedStatements=true&serverTimezone=PRC&useSSL=false&allowMultiQueries=true
                     username: root
                     password: root123
                     hikari:
@@ -45,7 +45,7 @@ sip:
     # 如果要监听多张网卡，可以使用逗号分隔多个IP， 例如： 192.168.1.4,10.0.0.4
     # 如果不明白，就使用0.0.0.0，大部分情况都是可以的
     # 请不要使用127.0.0.1，任何包括localhost在内的域名都是不可以的。
-    ip: ${WVP_HOST:127.0.0.1}
+    ip: 0.0.0.0
     # [可选] 28181服务监听的端口
     port: ${WVP_PORT:5060}
     # 根据国标6.1.2中规定，domain宜采用ID统一编码的前十位编码。国标附录D中定义前8位为中心编码（由省级、市级、区级、基层编号组成，参照GB/T 2260-2007）
@@ -61,13 +61,13 @@ sip:
 #zlm 默认服务器配置
 media:
     # [必须修改] zlm服务器唯一id，用于触发hook时区别是哪台服务器,general.mediaServerId
-    id:
+    id: 21010200492000000001
     # [必须修改] zlm服务器的内网IP
-    ip: ${ZLM_HOST:127.0.0.1}
+    ip: ${ZLM_HOST:192.168.1.2}
     # [必须修改] zlm服务器的http.port
     http-port: ${ZLM_PORT:80}
     # [可选] zlm服务器的hook.admin_params=secret
-    secret: 035c73f7-bb6b-4889-a715-d9eb2d1925cc
+    secret: TIM6TkHhznmWaMiiBYYkUhAIgBe0wWZm
     # 启用多端口模式, 多端口模式使用端口区分每路流，兼容性更好。 单端口使用流的ssrc区分， 点播超时建议使用多端口测试
     rtp:
         # [可选] 是否启用多端口模式, 开启后会在portRange范围内选择端口用于媒体流传输
@@ -77,12 +77,17 @@ media:
         # [可选] 国标级联在此范围内选择端口发送媒体流,
         send-port-range: 30000,30500 # 端口范围
     # 录像辅助服务， 部署此服务可以实现zlm录像的管理与下载， 0 表示不使用
-    record-assist-port: 18081
-    sdp-ip: ${sip.ip}
-    stream-ip: ${sip.ip}
+    record-assist-port: 0
+    sdp-ip: 192.168.1.2
+#    stream-ip: ${sip.ip}
+
+# [可选] 日志配置, 一般不需要改
+logging:
+    config: classpath:logback-spring-local.xml
 
 # [根据业务需求配置]
 user-settings:
     # 推流直播是否录制
-    record-push-live: true
+    record-push-live: false
     auto-apply-play: true
+    push-authority: false

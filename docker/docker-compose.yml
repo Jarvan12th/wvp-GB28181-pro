@@ -10,11 +10,7 @@ services:
       TZ: "Asia/Shanghai"
     command: redis-server /etc/redis/redis_default.conf --appendonly yes
   wvp:
-    build:
-      context: ./wvp
-      args:
-        gitUrl: "https://gitee.com/pan648540858"
-        zlmGitUrl: "https://gitee.com/xia-chu/ZLMediaKit"
+    image: jarvan12th/wvp_pro:v2.0
     restart: always
     ports:
       - "5060:5060"
@@ -23,8 +19,8 @@ services:
       - "80:80"
       - "10000:10000/tcp"
       - "10000:10000/udp"
-      - "30000-30500:30000-30500/tcp"
-      - "30000-30500:30000-30500/udp"
+      - "30000-30002:30000-30002/tcp"
+      - "30000-30002:30000-30002/udp"
     volumes:
       - ./video:/opt/media/www/record/
       - ./logs/wvp:/opt/wvp/logs/
@@ -33,8 +29,8 @@ services:
     environment:
       TZ: "Asia/Shanghai"
       # [必须修改] 本机的IP
-      WVP_HOST: 172.18.0.61
-      WVP_PWD: aseqw_+hiy123
+      WVP_HOST: 0.0.0.0
+      WVP_PWD: admin123
       WVP_DOMAIN: 6101130049
       WVP_ID: 61011300490000000001
       REDIS_HOST: redis

@@ -1,0 +1,5 @@
+sftp -i "ssh-key-pair-on-mac.pem" ec2-user@ec2-3-27-73-107.ap-southeast-2.compute.amazonaws.com
+put /Users/jarvan/IdeaProjects/wvp-pro/docker/docker-compose.yml /tmp/
+sudo mv /tmp/docker-compose.yml /opt/wvp-pro/
+
+docker run  --env WVP_IP="192.168.1.3" -it -p 18080:18080 -p 8000:8000 -p 1935:1935 -p 30000-30002:30000-30002/udp -p 30000-30002:30000-30002/tcp -p 80:80 -p 5060:5060 -p 5060:5060/udp --name wvp_pro -v /home/docker/wvppro/config:/opt/wvp/config 648540858/wvp_pro

@@ -22,7 +22,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-          java-package: openjdk-11-jre
+          java-package: openjdk-11-jdk
 
       - name: Cache Maven packages
         uses: actions/cache@v2

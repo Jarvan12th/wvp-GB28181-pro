@@ -1,6 +1,6 @@
 FROM ubuntu:20.04   as   build
 
-ARG gitUrl="https://gitee.com/pan648540858"
+ARG gitUrl="https://github.com/Jarvan12th"
 
 RUN export DEBIAN_FRONTEND=noninteractive &&\
         apt-get update && \
@@ -8,9 +8,9 @@ RUN export DEBIAN_FRONTEND=noninteractive &&\
         cmake ca-certificates openssl ffmpeg &&\
         mkdir -p /opt/wvp/config /opt/wvp/heapdump /opt/wvp/config /opt/assist/config /opt/assist/heapdump /opt/media/www/record
 
-RUN cd /home && \
-        git clone "${gitUrl}/maven.git" && \
-        cp maven/settings.xml /usr/share/maven/conf/
+#RUN cd /home && \
+#        git clone "${gitUrl}/maven.git" && \
+#        cp maven/settings.xml /usr/share/maven/conf/
 
 RUN cd /home && \
         git clone "${gitUrl}/wvp-GB28181-pro.git"

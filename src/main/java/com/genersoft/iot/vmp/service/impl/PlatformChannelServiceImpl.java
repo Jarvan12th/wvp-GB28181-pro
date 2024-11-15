@@ -136,7 +136,7 @@ public class PlatformChannelServiceImpl implements IPlatformChannelService {
                     deviceChannelList.add(deviceChannel);
                 }
                 return deviceChannelList;
-            } else if (catalog == null || !catalogId.equals(platform.getDeviceGBId())) {
+            } else if (catalog == null && !catalogId.equals(platform.getDeviceGBId())) {
                 logger.warn("未查询到目录{}的信息", catalogId);
                 return null;
             }
@@ -164,7 +164,7 @@ public class PlatformChannelServiceImpl implements IPlatformChannelService {
             return 0;
         }
         if (ObjectUtils.isEmpty(catalogId)) {
-            catalogId = null;
+           catalogId = null;
         }
 
         List<DeviceChannel> deviceChannels = platformChannelMapper.queryAllChannelInCatalog(platformId, catalogId);

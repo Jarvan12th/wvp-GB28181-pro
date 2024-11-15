@@ -25,4 +25,4 @@ jobs:
           context: .
           file: ./docker/wvp/Dockerfile
           push: true
-          tags: jarvan12th/wvp_pro:v5.0
+          tags: jarvan12th/wvp_pro:v6.0
